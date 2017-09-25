@@ -11,8 +11,8 @@ let ServiceBroker = require("../src/service-broker");
 let broker = new ServiceBroker({
 	//namespace: "multi",
 	nodeID: process.argv[2] || "client-" + process.pid,
-	//transporter: "NATS",
-	transporter: "amqp://192.168.0.181:5672",
+	transporter: "STAN",
+	//transporter: "amqp://192.168.0.181:5672",
 	//serializer: "ProtoBuf",
 	requestTimeout: 1000,
 
@@ -82,13 +82,13 @@ broker.start()
 	.then(() => broker.waitForServices("math"))
 	.then(() => {
 		setInterval(() => {
-			let payload = { a: _.random(0, 100), b: _.random(0, 100) };
+			reqCount++;
+			let payload = { a: _.random(0, 100), b: _.random(0, 100), counter: reqCount };
 			let p = broker.call("math.add", payload);
 			if (p.ctx)
 				broker.logger.info(chalk.grey(`Send request to ${p.ctx.nodeID ? p.ctx.nodeID : "some node"}...`));
-			reqCount++;
-			p.then(res => {
-				broker.logger.info(_.padEnd(`${reqCount}. ${payload.a} + ${payload.b} = ${res}`, 20), `(from: ${p.ctx.nodeID})`);
+			p.then(({ counter, res }) => {
+				broker.logger.info(_.padEnd(`${counter}. ${payload.a} + ${payload.b} = ${res}`, 20), `(from: ${p.ctx.nodeID})`);
 			}).catch(err => {
 				broker.logger.warn(chalk.red.bold(_.padEnd(`${reqCount}. ${payload.a} + ${payload.b} = ERROR! ${err.message}`)));
 			});

@@ -58,6 +58,7 @@
     "mqtt": "2.13.0",
     "msgpack5": "3.5.1",
     "nats": "0.7.20",
+    "node-nats-streaming": "0.0.26",
     "nodemon": "1.12.1",
     "npm-check": "5.4.5",
     "pino": "4.7.2",
