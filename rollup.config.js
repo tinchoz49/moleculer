@@ -57,6 +57,6 @@ module.exports = {
 			return false;
 		}
 
-		return !id.startsWith("\0") && !id.startsWith(".") && !id.startsWith("/");
+		return !id.startsWith("\0") && !id.startsWith(".") && !id.startsWith(path.sep);
 	}
 };
