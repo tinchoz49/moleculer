@@ -58,6 +58,17 @@ export default {
 			return false;
 		}
 
-		return !id.startsWith("\0") && !id.startsWith(".") && !id.startsWith(path.sep);
+		if (id.includes("node_modules")) {
+			return true;
+		}
+
+		try {
+			const module = require.resolve(id);
+			if (module.includes("node_modules")) {
+				return true;
+			}
+		} catch (err) {
+			return false;
+		}
 	}
 };
