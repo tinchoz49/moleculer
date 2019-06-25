@@ -15,6 +15,10 @@ const nonBrowserCompatible = [
 	"./mqtt",
 	"./nats",
 	"./redis",
+	"./kafka",
+	"./tcp",
+	"./stan",
+	"./cpu-usage",
 	"moleculer-repl"
 ].reduce((curr, next) => {
 	curr[next] = path.resolve("src/browser/non-compatible.js");
