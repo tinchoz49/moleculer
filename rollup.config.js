@@ -27,13 +27,14 @@ const builtInModules = [
 	"moleculer-repl"
 ];
 
-module.exports = {
+export default {
 	// browser-friendly UMD build
 	input: "./index.js",
 	output: {
 		name: "moleculer",
 		file: pkg.browser,
-		format: "umd"
+		format: "umd",
+		sourcemap: true
 	},
 	plugins: [
 		alias(nonBrowserCompatible),
