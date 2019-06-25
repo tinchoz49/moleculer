@@ -1,3 +1,3 @@
 module.exports = () => {
-	console.warn('This module is not compatible with the browser.');
+	console.warn('moleculer-browser: This module is not compatible with the browser.');
 };

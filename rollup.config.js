@@ -6,30 +6,47 @@ import commonjs from "rollup-plugin-commonjs";
 import alias from "rollup-plugin-alias";
 import inject from "rollup-plugin-inject";
 import analyze from "rollup-plugin-analyzer";
+import visualizer from "rollup-plugin-visualizer";
 import { terser } from "rollup-plugin-terser";
 
 import pkg from "./package.json";
 
-const nonBrowserCompatible = [
+function aliasResolve(modules, into, result = {}) {
+	return modules.reduce((curr, next) => {
+		curr[next] = path.resolve(into);
+		return curr;
+	}, result);
+}
+
+let aliasModules = aliasResolve([
+	// transporters
 	"./amqp",
 	"./mqtt",
 	"./nats",
-	"./redis",
 	"./kafka",
 	"./tcp",
 	"./stan",
+	// cache
+	"./redis",
+	// strategies
 	"./cpu-usage",
 	"moleculer-repl"
-].reduce((curr, next) => {
-	curr[next] = path.resolve("src/browser/non-compatible.js");
-	return curr;
-}, {});
+], "src/browser/non-compatible.js");
 
-const isProduction = process.env.NODE_ENV === "production";
+aliasModules = aliasResolve([
+	// serializers
+	"./avro",
+	"./msgpack",
+	"./notepack",
+	"./protobuf",
+	"./thrift"
+], "src/browser/unloaded-serializer.js", aliasModules);
 
 const builtInModules = [
 	"moleculer-repl"
 ];
+
+const isProduction = process.env.NODE_ENV === "production";
 
 export default {
 	// browser-friendly UMD build
@@ -41,7 +58,7 @@ export default {
 		sourcemap: true
 	},
 	plugins: [
-		alias(nonBrowserCompatible),
+		alias(aliasModules),
 		json(),
 		resolve({
 			preferBuiltins: true
@@ -55,6 +72,7 @@ export default {
 			}
 		}),
 		isProduction && terser(),
+		!isProduction && visualizer({ template: 'treemap' }),
 		analyze({ hideDeps: true, limit: 0 })
 	],
 	external: id => {

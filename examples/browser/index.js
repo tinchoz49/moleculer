@@ -2,7 +2,7 @@ const { ServiceBroker } = require("../../dist/moleculer.umd");
 
 const broker = new ServiceBroker({
 	transporter: { type: "fake" },
-	serializer: "Avro",
+	serializer: "Json",
 	logger: console
 });
 
