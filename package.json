@@ -3,6 +3,10 @@
   "version": "0.14.10",
   "description": "Fast & powerful microservices framework for Node.JS",
   "main": "index.js",
+  "browser": {
+    "index.js": "./browser/index.js",
+    "kleur": "./browser/loggers/kleur.js"
+  },
   "scripts": {
     "bench": "node benchmark/index.js",
     "ci": "jest --watch",
@@ -30,7 +34,8 @@
     "test:project": "jest --testMatch \"**/project/**/*.spec.js\"",
     "test:ts": "tsd && tsc -p test/typescript/hello-world && ts-node -P test/typescript/hello-world/tsconfig.json test/typescript/hello-world/index.ts",
     "release": "npm publish --access public && git push --tags",
-    "release:beta": "npm publish --tag next --access public && git push --tags"
+    "release:beta": "npm publish --tag next --access public && git push --tags",
+    "example:browser": "budo examples/browser.js --live"
   },
   "keywords": [
     "microservice",
@@ -64,6 +69,7 @@
     "amqplib": "^0.6.0",
     "avsc": "^5.4.21",
     "benchmarkify": "^2.1.2",
+    "budo": "^11.6.4",
     "bunyan": "^1.8.14",
     "coveralls": "^3.1.0",
     "dd-trace": "^0.24.2",
