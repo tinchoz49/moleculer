@@ -8,8 +8,11 @@
 
 const _ 			= require("lodash");
 const os 			= require("os");
+const { detect }    = require("detect-browser");
 const Node 			= require("./node");
 const { getIpList } = require("../utils");
+
+const environment = detect();
 
 /**
  * Catalog for nodes
@@ -49,7 +52,7 @@ class NodeCatalog {
 		node.instanceID = this.broker.instanceID;
 		node.hostname = os.hostname();
 		node.client = {
-			type: "nodejs",
+			type: environment.type,
 			version: this.broker.MOLECULER_VERSION,
 			langVersion: process.version
 		};

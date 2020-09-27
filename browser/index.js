@@ -6,46 +6,48 @@
 
 "use strict";
 
-// const {
-// 	CIRCUIT_CLOSE,
-// 	CIRCUIT_HALF_OPEN,
-// 	CIRCUIT_HALF_OPEN_WAIT,
-// 	CIRCUIT_OPEN
-// } = require("./src/constants");
+require("./polyfills");
+
+const {
+	CIRCUIT_CLOSE,
+	CIRCUIT_HALF_OPEN,
+	CIRCUIT_HALF_OPEN_WAIT,
+	CIRCUIT_OPEN
+} = require("../src/constants");
 
 module.exports = {
-	// ServiceBroker: require("./src/service-broker"),
-	Loggers: require("./loggers"),
-	// Service: require("./src/service"),
-	// Context: require("./src/context"),
+	ServiceBroker: require("../src/service-broker"),
+	Loggers: require("../src/loggers"),
+	Service: require("../src/service"),
+	Context: require("../src/context"),
 
-	// Cachers: require("./src/cachers"),
+	Cachers: require("../src/cachers"),
 
-	// Transporters: require("./src/transporters"),
-	// Serializers: require("./src/serializers"),
-	// Strategies: require("./src/strategies"),
-	// Validators: require("./src/validators"),
-	// Validator: require("./src/validators/fastest"), // deprecated
-	// TracerExporters: require("./src/tracing/exporters"),
-	// MetricTypes: require("./src/metrics/types"),
-	// MetricReporters: require("./src/metrics/reporters"),
-	// METRIC: require("./src/metrics/constants"),
+	Transporters: require("../src/transporters"),
+	Serializers: require("../src/serializers"),
+	Strategies: require("../src/strategies"),
+	Validators: require("../src/validators"),
+	Validator: require("../src/validators/fastest"), // deprecated
+	TracerExporters: require("../src/tracing/exporters"),
+	MetricTypes: require("../src/metrics/types"),
+	MetricReporters: require("../src/metrics/reporters"),
+	METRIC: require("../src/metrics/constants"),
 
-	// Registry: require("./src/registry"),
-	// Discoverers: require("./src/registry/discoverers"),
+	Registry: require("../src/registry"),
+	Discoverers: require("../src/registry/discoverers"),
 
-	// Middlewares: require("./src/middlewares"),
+	Middlewares: require("../src/middlewares"),
 
-	// Errors: require("./src/errors"),
+	Errors: require("../src/errors"),
 
-	// Runner: require("./src/runner"),
-	// Utils: require("./src/utils"),
+	Runner: require("../src/runner"),
+	Utils: require("../src/utils"),
 
-	// CIRCUIT_CLOSE,
-	// CIRCUIT_HALF_OPEN,
-	// CIRCUIT_HALF_OPEN_WAIT,
-	// CIRCUIT_OPEN,
+	CIRCUIT_CLOSE,
+	CIRCUIT_HALF_OPEN,
+	CIRCUIT_HALF_OPEN_WAIT,
+	CIRCUIT_OPEN,
 
-	// MOLECULER_VERSION: require("./src/service-broker").MOLECULER_VERSION,
-	// PROTOCOL_VERSION: require("./src/service-broker").PROTOCOL_VERSION
+	MOLECULER_VERSION: require("../src/service-broker").MOLECULER_VERSION,
+	PROTOCOL_VERSION: require("../src/service-broker").PROTOCOL_VERSION
 };

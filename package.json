@@ -3,10 +3,6 @@
   "version": "0.14.10",
   "description": "Fast & powerful microservices framework for Node.JS",
   "main": "index.js",
-  "browser": {
-    "index.js": "./browser/index.js",
-    "kleur": "./browser/loggers/kleur.js"
-  },
   "scripts": {
     "bench": "node benchmark/index.js",
     "ci": "jest --watch",
@@ -114,6 +110,9 @@
   },
   "dependencies": {
     "args": "^5.0.1",
+    "bfs-process": "^1.0.0",
+    "cpus": "^1.0.3",
+    "detect-browser": "^5.1.1",
     "es6-error": "^4.1.1",
     "eventemitter2": "^6.4.3",
     "fastest-validator": "^1.6.1",
@@ -123,7 +122,9 @@
     "kleur": "^4.1.1",
     "lodash": "^4.17.20",
     "lru-cache": "^6.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "raf-perf": "^1.2.0",
+    "setimmediate": "^1.0.5"
   },
   "engines": {
     "node": ">= 10.x.x"
@@ -148,5 +149,47 @@
     "roots": [
       "../test"
     ]
+  },
+  "browser": {
+    "index.js": "./browser/index.js",
+    "./src/cpu-usage.js": "./browser/cpu-usage.js",
+    "v8": false,
+    "event-loop-stats": false,
+    "moleculer-repl": false,
+    "./src/loggers/bunyan": false,
+    "./src/loggers/datadog": false,
+    "./src/loggers/debug": false,
+    "./src/loggers/file": false,
+    "./src/loggers/log4js": false,
+    "./src/loggers/pino": false,
+    "./src/loggers/winston": false,
+    "./src/transporters/amqp": false,
+    "./src/transporters/amqp10": false,
+    "./src/transporters/kafka": false,
+    "./src/transporters/mqtt": false,
+    "./src/transporters/nats": false,
+    "./src/transporters/redis": false,
+    "./src/transporters/stan": false,
+    "./src/transporters/tcp": false,
+    "./src/cachers/redis": false,
+    "./src/registry/discoverers/etcd3": false,
+    "./src/registry/discoverers/redis": false,
+    "./src/serializers/avro": false,
+    "./src/serializers/msgpack": false,
+    "./src/serializers/notepack": false,
+    "./src/serializers/protobuf": false,
+    "./src/serializers/thrift": false,
+    "./src/metrics/reporters/csv": false,
+    "./src/metrics/reporters/datadog": false,
+    "./src/metrics/reporters/prometheus": false,
+    "./src/metrics/reporters/statsd": false,
+    "./src/tracing/exporters/datadog": false,
+    "./src/tracing/exporters/datadog-simple": false,
+    "./src/tracing/exporters/jaeger": false,
+    "./src/tracing/exporters/newrelic": false,
+    "./src/tracing/exporters/zipkin": false,
+    "./src/middlewares/hot-reload": false,
+    "./src/middlewares/transmit/compression": false,
+    "./src/middlewares/transmit/encryption": false
   }
 }

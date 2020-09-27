@@ -7,12 +7,15 @@
 "use strict";
 
 const os = require("os");
+const { detect } = require("detect-browser");
 const { getIpList } = require("./utils");
 const MOLECULER_VERSION = require("../package.json").version;
 
+const environment = detect();
+
 const getClientInfo = () => {
 	return {
-		type: "nodejs",
+		type: environment.type,
 		version: MOLECULER_VERSION,
 		langVersion: process.version
 	};
