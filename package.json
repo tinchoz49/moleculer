@@ -123,6 +123,7 @@
     "lodash": "^4.17.20",
     "lru-cache": "^6.0.0",
     "node-fetch": "^2.6.1",
+    "os-browserify": "^0.3.0",
     "raf-perf": "^1.2.0"
   },
   "engines": {
@@ -153,6 +154,7 @@
     "index.js": "./browser/index.js",
     "./src/cpu-usage.js": "./browser/cpu-usage.js",
     "node-fetch": "./browser/fetch.js",
+    "os": "./browser/polyfills/os.js",
     "v8": false,
     "event-loop-stats": false,
     "moleculer-repl": false,

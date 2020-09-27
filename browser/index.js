@@ -6,7 +6,7 @@
 
 "use strict";
 
-require("./polyfills");
+require("./polyfills/process");
 
 const {
 	CIRCUIT_CLOSE,
