@@ -123,8 +123,7 @@
     "lodash": "^4.17.20",
     "lru-cache": "^6.0.0",
     "node-fetch": "^2.6.1",
-    "raf-perf": "^1.2.0",
-    "setimmediate": "^1.0.5"
+    "raf-perf": "^1.2.0"
   },
   "engines": {
     "node": ">= 10.x.x"
@@ -153,6 +152,7 @@
   "browser": {
     "index.js": "./browser/index.js",
     "./src/cpu-usage.js": "./browser/cpu-usage.js",
+    "node-fetch": "./browser/fetch.js",
     "v8": false,
     "event-loop-stats": false,
     "moleculer-repl": false,
@@ -183,13 +183,13 @@
     "./src/metrics/reporters/datadog": false,
     "./src/metrics/reporters/prometheus": false,
     "./src/metrics/reporters/statsd": false,
-    "./src/tracing/exporters/datadog": false,
-    "./src/tracing/exporters/datadog-simple": false,
     "./src/tracing/exporters/jaeger": false,
-    "./src/tracing/exporters/newrelic": false,
-    "./src/tracing/exporters/zipkin": false,
+    "./src/tracing/exporters/datadog": false,
     "./src/middlewares/hot-reload": false,
     "./src/middlewares/transmit/compression": false,
-    "./src/middlewares/transmit/encryption": false
+    "./src/middlewares/transmit/encryption": false,
+    "./src/metrics/reporters/csv.js": false,
+    "./src/metrics/reporters/prometheus.js": false,
+    "./src/metrics/reporters/statsd.js": false
   }
 }

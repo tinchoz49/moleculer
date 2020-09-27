@@ -28,23 +28,23 @@ class NewRelicTraceExporter extends BaseTraceExporter {
 			baseURL:
 			process.env.NEW_RELIC_TRACE_API_URL || "https://trace-api.newrelic.com",
 
-		  /** @type {String} NewRelic Insert API Key */
-		  insertKey: "",
+			/** @type {String} NewRelic Insert API Key */
+			insertKey: "",
 
-		  /** @type {Number} Batch send time interval in seconds. */
-		  interval: 5,
+			/** @type {Number} Batch send time interval in seconds. */
+			interval: 5,
 
-		  /** @type {Object} Additional payload options. */
-		  payloadOptions: {
-			/** @type {Boolean} Set `debug` property in v2 payload. */
+			/** @type {Object} Additional payload options. */
+			payloadOptions: {
+				/** @type {Boolean} Set `debug` property in v2 payload. */
 				debug: false,
 
 				/** @type {Boolean} Set `shared` property in v2 payload. */
 				shared: false,
-		  },
+			},
 
-		  /** @type {Object?} Default span tags */
-		  defaultTags: null,
+			/** @type {Object?} Default span tags */
+			defaultTags: null,
 		});
 
 		this.queue = [];
@@ -63,7 +63,7 @@ class NewRelicTraceExporter extends BaseTraceExporter {
 
 		if (this.opts.interval > 0) {
 			this.timer = setInterval(() => this.flush(), this.opts.interval * 1000);
-			this.timer.unref();
+			this.timer.unref && this.timer.unref();
 		}
 
 		this.defaultTags = isFunction(this.opts.defaultTags) ? this.opts.defaultTags.call(this, tracer) : this.opts.defaultTags;
@@ -111,8 +111,8 @@ class NewRelicTraceExporter extends BaseTraceExporter {
 				headers: {
 					"Content-Type": "application/json",
 					"Api-Key": this.opts.insertKey,
- 				"Data-Format": "zipkin",
- 				"Data-Format-Version": "2"
+					"Data-Format": "zipkin",
+					"Data-Format-Version": "2"
 				}
 			}).then(res => {
 			if (res.status >= 400) {

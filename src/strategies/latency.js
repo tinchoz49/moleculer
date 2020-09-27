@@ -86,7 +86,7 @@ class LatencyStrategy extends BaseStrategy {
 	discovery() {
 		return this.broker.transit.sendPing().then(() => {
 			const timer = setTimeout(() => this.pingHosts(), 1000 * this.opts.pingInterval);
-			timer.unref();
+			timer.unref && timer.unref();
 		});
 	}
 
@@ -109,7 +109,7 @@ class LatencyStrategy extends BaseStrategy {
 			return this.broker.transit.sendPing(nodeID);
 		})).then(() => {
 			const timer = setTimeout(() => this.pingHosts(), 1000 * this.opts.pingInterval);
-			timer.unref();
+			timer.unref && timer.unref();
 		});
 	}
 

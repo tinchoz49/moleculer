@@ -51,7 +51,7 @@ class ConsoleReporter extends BaseReporter {
 
 		if (this.opts.interval > 0) {
 			this.timer = setInterval(() => this.print(), this.opts.interval * 1000);
-			this.timer.unref();
+			this.timer.unref && this.timer.unref();
 		}
 	}
 

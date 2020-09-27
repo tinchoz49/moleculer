@@ -63,7 +63,7 @@ class DatadogReporter extends BaseReporter {
 
 		if (this.opts.interval > 0) {
 			this.timer = setInterval(() => this.flush(), this.opts.interval * 1000);
-			this.timer.unref();
+			this.timer.unref && this.timer.unref();
 		}
 
 		this.defaultLabels = isFunction(this.opts.defaultLabels) ? this.opts.defaultLabels.call(this, registry) : this.opts.defaultLabels;

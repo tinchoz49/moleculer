@@ -10,6 +10,9 @@
 
 const FormattedLogger 	= require("./formatted");
 const kleur 			= require("kleur");
+const { detect }        = require("detect-browser");
+
+const environment = detect();
 
 /**
  * Console logger for Moleculer
@@ -53,16 +56,24 @@ class ConsoleLogger extends FormattedLogger {
 			const typeIdx = FormattedLogger.LEVELS.indexOf(type);
 			if (typeIdx > levelIdx) return;
 
-			const pargs = formatter(type, args);
+			let pargs = formatter(type, args);
+			if (environment.type === "browser") {
+				pargs = pargs.join(" ");
+			}
+
 			switch(type) {
 				case "fatal":
-				case "error": return console.error(...pargs);
-				case "warn": return console.warn(...pargs);
-				default: return console.log(...pargs);
+				case "error": return this._print("error", pargs);
+				case "warn": return this._print("warn", pargs);
+				default: return this._print("log", pargs);
 			}
 		};
 	}
 
+	_print(type, args) {
+		if (Array.isArray(args)) return console[type](...args);
+		return console[type](args);
+	}
 }
 
 module.exports = ConsoleLogger;

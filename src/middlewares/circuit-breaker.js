@@ -23,7 +23,7 @@ module.exports = function circuitBreakerMiddleware(broker) {
 	function createWindowTimer(windowTime) {
 		if (!windowTimer) {
 			windowTimer = setInterval(() => resetStore(), (windowTime || 60) * 1000);
-			windowTimer.unref();
+			windowTimer.unref && windowTimer.unref();
 		}
 	}
 
@@ -133,7 +133,7 @@ module.exports = function circuitBreakerMiddleware(broker) {
 		}
 
 		item.cbTimer = setTimeout(() => halfOpen(item, ctx), item.opts.halfOpenTime);
-		item.cbTimer.unref();
+		item.cbTimer.unref && item.cbTimer.unref();
 
 		const action = item.ep.action;
 		const service = item.service.fullName;
@@ -184,7 +184,7 @@ module.exports = function circuitBreakerMiddleware(broker) {
 
 		// Anti-stick protection
 		item.cbTimer = setTimeout(() => halfOpen(item, ctx), item.opts.halfOpenTime);
-		item.cbTimer.unref();
+		item.cbTimer.unref && item.cbTimer.unref();
 	}
 
 	/**

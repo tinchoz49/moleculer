@@ -82,7 +82,7 @@ class MetricRegistry {
 				this.collectTimer = setInterval(() => {
 					updateCommonMetrics.call(this);
 				}, this.opts.collectInterval * 1000);
-				this.collectTimer.unref();
+				this.collectTimer.unref && this.collectTimer.unref();
 
 				registerCommonMetrics.call(this);
 				updateCommonMetrics.call(this);

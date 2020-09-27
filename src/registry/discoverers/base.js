@@ -97,15 +97,15 @@ class BaseDiscoverer {
 			// HB timer
 			const time = this.opts.heartbeatInterval * 1000 + (Math.round(Math.random() * 1000) - 500); // random +/- 500ms
 			this.heartbeatTimer = setInterval(() => this.beat(), time);
-			this.heartbeatTimer.unref();
+			this.heartbeatTimer.unref && this.heartbeatTimer.unref();
 
 			// Check expired heartbeats of remote nodes timer
 			this.checkNodesTimer = setInterval(() => this.checkRemoteNodes(), this.opts.heartbeatTimeout * 1000);
-			this.checkNodesTimer.unref();
+			this.checkNodesTimer.unref && this.checkNodesTimer.unref();
 
 			// Clean offline nodes timer
 			this.offlineTimer = setInterval(() => this.checkOfflineNodes(), 60 * 1000); // 1 min
-			this.offlineTimer.unref();
+			this.offlineTimer.unref && this.offlineTimer.unref();
 		}
 	}
 

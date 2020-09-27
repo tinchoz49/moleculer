@@ -30,7 +30,8 @@ class MetricRate {
 		this.lastTickTime = Date.now();
 		this.value = null;
 
-		this.timer = setInterval(() => this.tick(), INTERVAL * 1000).unref();
+		this.timer = setInterval(() => this.tick(), INTERVAL * 1000);
+		this.timer.unref && this.timer.unref();
 	}
 
 	update(value) {

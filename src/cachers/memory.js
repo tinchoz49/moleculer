@@ -38,7 +38,7 @@ class MemoryCacher extends BaseCacher {
 			/* istanbul ignore next */
 			this.checkTTL();
 		}, 30 * 1000);
-		this.timer.unref();
+		this.timer.unref && this.timer.unref();
 
 		// Set cloning
 		this.clone = this.opts.clone === true ? _.cloneDeep : this.opts.clone;
